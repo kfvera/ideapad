@@ -1,0 +1,18 @@
+<h1>Listing ideas</h1>
+
+<% @ideas.in_groups_of(3) do |group| %>
+
+  <div class="row">
+    <% group.compact.each do |idea| %>
+      <div class="span4">
+        <h4><%= link_to idea.title, idea %></h4>
+        <%= idea.description %><br/>
+        <em><%= idea.user.try(:email) %></em>
+        <p>
+          <%= link_to 'Edit', edit_idea_path(idea) %> |
+          <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
